@@ -1,0 +1,529 @@
+man = manuel; zeigt das Benutzerhandbuch zu einem Programm
+
+apropos = sucht nach Verbindungend des übergebenen Stichwortes zu anderen Programmen
+
+pwd = print working directory
+
+ls = list
+
+	-a = zeigt auch versteckte (mit .beginnende) Dateien an
+
+cd = change directory (ohne Argumente wechselt man ins Home-Verzeichnis
+
+cp = copy; 
+
+	Beispiel: cp zu_kopierende.datei kopie.datei
+
+mkdir = make directory
+
+mv = move; Datei/ Verzeichnis umbenennen und/ oder verschieben
+
+	Beispiel: mv vorher.txt nachher.txt
+
+rm = remove
+
+	-rf = remove recursively; löscht Verzeichnis mit allem Inhalt
+
+rmdir = remove directory (löscht nur leere Verzeichnise)
+
+hexdump = zeigt Bytes einer Datei in Hexadezimal-Kodierung
+
+	Beispiel: hexdump -C notizen.txt
+
+more = anzeigen, blättern, suchen in Textdateien
+
+	b = ein Seite nach oben
+	[leertaste] = eine Seite nach unten
+
+	 = eine Zeile nach oben
+	[return] = eine Zeile nach unten
+
+	/suchbegriff = nach suchbegriff suchen
+	n = suche fortsetzen
+
+	h = eingebaute hilfe
+
+
+
+Wildcards
+
+* ersetzt beliebig viele Zeichen
+
+? ersetz genau ein Zeichen
+
+[a-f] ersetzt ein Zeichen durch eins in der Liste a bis f
+
+
+
+bc = basic calculator
+	scale=num -> num Nachkommastellen zeigen
+	bc -l: mit l(num) kann nun der Logarithmus von num berechnet werden
+
+echo = gibt seine Argumente an die Ausgabe (standertmäßig wird immer ein Zeilenumbruch ausgegeben)
+
+Ausgabeumleitung: echo Hallo Welt [>,>>] ausgabe.txt
+>	löscht alten Inhalt aus ausgabe.txt
+>>	fügt Argument hinten an ausgabe.txt
+
+Nützlicher Seiteneffekt: echo zeigt, wie Befehle ihre Argumente "sehen"
+
+	echo -n = Unterdrückt Zeilenumbruch/-vorschub; dies ist nützlich bei Skripten
+
+
+Eingabeumleitung: <
+	also aus einer Datei in ein Programm
+
+sort datei = Sortiert datei alphabetisch nach der ersten Spalte
+	sort -k 2 datei = ... nach der zweiten Spalte
+	sort -n datei = sortiert nummerisch
+	sort -V = natürliche sortierung von Versionsnummern
+
+Ausgabeweiterleitung: | (genannt "Pipe")
+	ls -l | sort -k 5 -n | more
+	insgesamt 159080
+	-rw-r--r-- 1 heinz heinz      1007 Nov 14 16:57 blatt01.txt
+	-rw-r--r-- 1 heinz heinz      1577 Nov 20 13:34 notizen.txt
+	drwx------ 6 heinz heinz      4096 Nov  6 11:49 uebungen01
+	drwxr-xr-x 3 heinz heinz      4096 Nov 17 18:05 uebungen02
+	-rw-rw-r-- 1 heinz heinz     69658 Nov 20 13:10 blatt02.pdf
+	-rw-rw-r-- 1 heinz heinz     93695 Nov 14 12:24 blatt01.pdf
+	-rw-rw-r-- 1 heinz heinz    243397 Nov 20 13:09 unix-02.pdf
+	-rw-rw-r-- 1 heinz heinz    631088 Nov 14 11:08 unix-01.pdf
+	-rw-rw-r-- 1 heinz heinz   6837347 Nov  4 14:10 unix-00.pdf
+	-rw-rw-r-- 1 heinz heinz  41781598 Nov  4 14:08 unix0-0.mp4
+	-rw-rw-r-- 1 heinz heinz 113206605 Nov  4 14:10 unix0-1.mp4
+
+man sieht, Ausgabe links vom Pipe wird Eingabe rechts davon
+
+
+cat = concatenate files (gibt den Inhalt der Argumentdateien nacheinander aus)
+	
+diff = show difference between files (S.16 in unix02.pdf)
+
+head datei = zeigt die ersten 10 Zeilen von datei
+	head -n = zeigt die ersten n-Zeilen einer Datei
+
+tail datei = zeigt die letzten 10 Zeilen von datei
+	tail -n -x = zeigt die letzten x-Zeilen einer Datei
+	tail -n +x = zeigt alle Zeilen ab Zeile x
+
+
+; trennt Aufrufe; Ausgaben werden aneinandergehängt
+
+	Beispiel: head -2 planeten2.txt ; tail -n +3 planeten2.txt | sort
+
+Um die Ausgabe des Beispiels in eine Datei umzuleiten muss man den ganzen Ausdruck noch einklammern, da sonst nur der Teilausdruck nach dem letzten ; umgeleitet wird.
+
+
+grep = global regular expression print; durchsucht Datei(en) oder Text nach einem Wort 
+
+	Beispiel: grep datei *.txt (durchsucht alle Textdateien nach dem Wort datei)
+	-i = wenn beim gesuchten Wort Groß/Kleinschreibung egal ist
+
+	grep "^text" datei = Sucht in datei nach text das am Zeilenanfag steht
+	grep "text$" datei = Sucht in datei nach text das am Zeilenende steht
+
+
+sed "s/alt/neu/(g)" = script editor; suchen & ersetzen
+	mit dem g ersetzt man alle vorkommen von alt in einem Text durch neu; sonst nur das erste
+
+
+& = Abkoppeln eines Programms von der Kommandozeile/ Kommandozeile kann weiterbenutzt werden
+
+Falls ein Programm bereits die Kommandozeile blockiert, kann man mit es strg-z anhalten und mit bg (im Hintergrund=) abgekoppelt weiterlaufen lassen. Mit fg lässt es sich wieder ankoppeln.
+
+	strg-z
+	bg
+
+df = zeigt freien Plattenplatz an
+
+du = zeigt besetzten Plattenplatz an
+
+
+gzip datei = komprimiert datei verlustlos
+
+gunzip datei.gz = entpackt datei.gz
+
+
+tar = ent/komprimieren mehrerer Dateien
+
+	tar czf name.tar.gz dateien = komprimiert dateien/verzeichnisse in das Archiv name
+
+	tar tvzf name.tar.gz = zeigt den Inhalt des Archivs
+
+	tar xzf name.tar.gz = entpackt das Archiv name
+
+	tar xzf name.tar.gz datei.txt = entpackt nur die datei datei.txt aus dem Archiv
+
+ps = process summary; Zeigt die Prozesse welche von dieser Kommandozeile ausgeführt werden.
+
+wc = word count; zählt Zeilen, Wörter, Bytes
+
+	wc -l = zählt nur Zeilen
+	wc -m = zählt nur Buchstaben
+
+kill pid = beendet den Prozess der durch die pid (process ID) beschrieben wird
+
+	kill -9 pid = unfreundliche Version
+
+	pkill programm = beendet alle Prozesse, in denen programm vorkommt (ähnlich wie grep); nützlich für große Programme
+
+
+top = zeigt Anfang der Prozesswarteschlange
+
+
+nice prozess = prozess wird ressourcenschonend ausgeführt
+
+
+groups = zeigt an zu welchen Gruppen man gehört
+id = zeigt die identity's zu den Gruppen an
+
+chmod = change file mode
+	u = user, g = group, o = other/ all
+	r = read/open, w = write/delete, x = execute/enter
+
+	Beispiel: chmod u+rwx,g-wx,o= datei	oder: chmod 700 datei
+
+chown = change owner
+
+umask 700 = neuen Dateien werden mit der berechtigung 700 angelegt; voreinstellung für neue Dateien
+
+
+find = find files & directories
+
+	find ordner -name xxx => sucht in ordner nach der Datei xxx (Unterordner miteinbezogen)
+	find ordner -type [df] => zeigt alle Dateie (wenn type f) oder Ordner (type d) von ordner an
+
+
+alias: Ein Programm unter einem anderen Namen verwenden (04 S.10)
+z.B.: alias ll ="ls -l"
+
+
+.bashrc = "bash resources" - Konfigurationsdatei
+	wird beim start der Kommadozeile ausgeführt
+
+	
+env = alle Umgebungsvariablen werden angezeigt
+
+which = zeigt den Pfad eines Programms an
+
+
+Shellskripte sind folgendermaßen aufgebaut:
+
+	#!/bin/bash
+	[Befehle]
+
+ausführbar mit: ./"name des Skrips".sh
+
+
+$(Funktionsaufruf) = liefert Ausgabe des Aufrufs
+Beispiel: 
+
+	date "+%d. %B %Y"
+	11. November 2020
+
+	echo "Log vom $(date "+%d. %B %Y") für $USER:"
+	Log vom 11. November 2020 für frettloe:
+
+
+
+VCS/ git
+
+
+Beispiel für frisch installiertes git:
+
+git config --global user.name ”Dirk Frettlöh”$
+git config --global user.email”dfrettloeh@techfak.de”$
+git config --global core.editor emacs
+
+Das wird in der Datei /.gitconfig gespeichert.
+
+
+Neues Projekt anlegen:
+cd ordner
+git init
+
+Datei stagen:
+git add dateiName
+	alternative alle Dateien stagen: git add *
+
+
+gestagte Dateien commiten:
+git commit
+	alternative mit Kommentar: git commit -m ”kommentar”
+
+Status anzeigen:
+git status
+	kurz: git status -s
+
+alte Version wiederhestellen:
+git checkout HEAD dateiName
+
+Komplette working directory wiederherstellen:
+git reset --hard
+
+Datei unstagen:
+git reset -- dateiName
+
+Datei aus repo entfernen:
+git rm dateiName
+git commit
+
+Versionsgeschichte:
+git log
+	interessante Kombinationen aus git log und grep:
+
+	grep -v xyz test.txt findet alle Zeilen in test.txt, die xyz nicht enthalten
+
+	grep -A5 xyz test.txt zeigt alle Zeilen in test.txt, die xyz enthalten, jeweils zusammen mit 		den 5 Zeilen danach
+
+	grep -B3 xyz test.txt zeigt alle Zeilen, die xyz enthalten, jeweils zusammen mit den 3 Zeilen 		davor
+
+	grep -A5 -B3 xyz test.txt zeigt alle Zeilen, die xyz enthalten, jeweils zusammen mit den 3 		Zeilen davor und den 5 Zeilen danach
+
+
+.gitignore: Bezeichner in dieser Datei werden von git ignoriert
+
+
+(Vorlesung 6, S.9f.)
+git fetch: holt Dateien aus globalem Repo aber fügt sie nicht umbedingt zusammen
+	[fetch ist pull ohne merge]
+
+git pull: holt Dateien aus globalem Repo und fügt sie mit meinem lokalen Repo zusammen
+
+git push: fügt lokale änderungen dem globalen Repo hinzu
+	- "git push" ist kurz für "git push origin master"
+	- in komplexeren Situationen: git push remote branch
+
+Beispiel für Arbeitsablauf:
+1. git clone dfrettloeh@files.techfak.de:projekt
+2. Dateien bearbeiten
+3. git add Datei ; git commit -m ’kommentar’
+4. git pull
+5. git push
+6. GOTO 2.
+
+
+Auf den letzten globalen commit zurürcksetzen:
+git reset --hard origin/master
+
+das gerade gepushte rückgängig machen:
+git revert *commit hash*
+git push
+
+Kommentar beim letzten commit verändern (bevor gepusht wurde):
+git commit --amend -m "neuer Kommentar"
+
+Gerade gelöschte Datei wiederherstellen:
+git checkout -- *DATEINAME*
+
+nach mehreren schlechten commits auf Version vorher zurücksetzen:
+git reset --hard *hash*
+
+eine gestagete Datei aus dem Stage-Bereich entfernen:
+git rm --cached *DATEINAME*
+
+
+branch erzeugen:
+git branch *branch name*
+
+branch löschen:
+git branch -d *branch name*
+
+in anderen branch wechseln:
+git checkout *branch name*
+
+branch mit master vereinigen:
+git checkout master
+git merge *branch name*
+
+neuen branch erstellen & direkt reinwechseln:
+git checkout -b *branch name*
+
+
+
+
+if test <Bedingung> 
+then <wenn Wahr> 
+else <wenn Falsch>
+fi
+	- Beim = auf Leerzeichen achten.
+	- ! nach test negiert die Bedingung
+	- exit 1 bricht das Skrip ab
+	- ; benutzen, falls man das ganze in einer Zeile schreiben möchte
+
+
+test Schreibweisen:
+
+if test -r datei.txt
+if [ -r datei.txt ]	hier auch auf die Leerzeichen [_..._] achten
+
+
+Testmöglichkeiten mit Zeichenketten: 
+(Bei Zeichenketten Variablen in "" setzen ("$1"), da es bei leeren Zeichenketten sonst zu Syntaxfehlern kommt)
+
+test "$1" = "hallo"	#Zeichenkette gleich "hallo"
+test "$1" != "hallo"	#Zeichenkette nicht gleich "hallo"
+test -z "$1"		#$1 ist die leere Zeichenkette
+test -n "$1"		#$1 ist nicht die leere Zeichenkette
+
+
+Testmöglichkeiten bei Ganzzahlen
+
+test $1 -eq 42	# Zahl gleich 42
+test $1 -gt 42	# Zahl größer 42
+test $1 -ge 42	# Zahl größer/gleich 42
+test $1 -lt 42	# Zahl kleiner 42
+test $1 -le 42	# Zahl kleiner/gleich 42
+test $1 -ne 42	# Zahl nicht gleich 42
+
+
+Testmöglichkeiten bzgl. Dateien
+
+test -f $1	# Datei $1 existiert und ist reguläre Datei
+test -r $1	# Datei $1 existiert und ist lesbar
+test -w $1	# Datei $1 existiert und ist schreibbar
+test -x $1	# Datei $1 existiert und ist ausführbar
+test -d $1	# $1 existiert und ist ein Verzeichen
+
+
+Mehrere Bedingungen können mit && und || verknüpft werden.
+
+
+grep und diff haben auch Wahrheitswerte:
+	grep wort datei => true, wenn wort in datei vorkommt
+	diff datei1 datei2 => true, wenn beide Dateien gleich sind
+
+bei Pipes gilt der Wert des letzten Befehls
+
+
+Variablenzuweisung: var=eins (keine Leerzeichen um =)
+	Variablen werden mit $<Variablenbezeichner> angesprochen
+
+Zwischenspeichern von Programmausgaben: var=$(Programm)
+	es wird abgeraten mehrzeilige Ausgaben in eine Variable zu speichern
+
+	mit {} lässt sich eine Variable vom Text abtrennen
+		z.B.:	name=zeichen
+			echo ${name}kette
+			zeichenkette
+
+	Leerzeichen zwischen Variablen [bei zuweisung dieser an eine Variable] lassen sich mit "var1 
+	var2" erzeugen
+		z.B.:	a=eins
+			b=zwei
+			c="$a $b"
+			echo $c
+			eins zwei
+
+	Arithmetischen Ausdruck auswerten: $((Ausdruck))
+		das vorschreiben des $ an Variablen kann hier ausgelassen werden
+
+
+mit $RANDOM lassen sich Zufallszahlen zwischen 0...32767 liefern
+
+
+mehrfache Fallunterscheidung: case
+Beispiel:
+
+wurf=$((1+RANDOM%6))
+
+case $wurf in
+	1)   echo "Oh je, eine 1"
+	;;
+	6)   echo "Juhu, eine 6"
+	;;
+	5)   echo "Gut, eine 5"
+	;;
+	*)   echo "Eine $wurf"
+	;;
+esac
+
+
+
+for-Schleifen haben die Form:	for i in ...; do ...; done
+                                                              ↓          ↓
+        Wertebereich der Schleifenvariable i     werte diesen Block für jedes i einmal aus
+
+
+
+mögliche Wertebereich:
+- diskreten Werte (z.B. for i in eins zwei drei...)
+- Zahlenfolge (for i in $(seq 10)...)
+- ...
+prinzipiel jeder Ausdruck, der eine Ergebnisliste zurückgibt
+diese Prozeduren müssen mit $(...) eingeklammert wetden
+
+
+seq n: Zahlenfolge von 1...n
+seq i n: Zahlenfolge von i...n
+seq i s n: Zahlenfolge von i...n mit Schrittweite s
+
+
+basename: Dateiname ohne Pfad % Endung liefern
+	basename /homes/df/bild.jpg = bild.jpg
+	basename ~/bild.jpg .jpg = bild
+
+
+CSV: character separated values = Stellt Tabellen in Textdateien dar
+	das Trennzeichen dass die Einträge trennt ist beliebig wählbar.
+
+cut: Spalten aus Tabellen auswählen
+	cut -d <trennzeichen> -f <spalten> dateiname   (wenn notwendig \ vor Trennzeichen)
+
+Spalten lassen sich folgendermaßen auswählen:
+	cut -d \; -f 2,5,9	wähle Spalten 2,5,9 aus
+	cut -d \; -f 2-5,10	wähle Spalten 2 bis 5 und 10 aus
+	cut -d \; -f 3-		wähle Spalten alle ab Spalte 3 aus
+
+
+tr: Zeichen umwandeln oder zusammenfassen; Argumente müssen mit Pipes übergeben werden
+
+komprimieren:	tr -s "<zeichen>"	viele aufeinander Folgende zeichen werden zu dem einen
+umwandeln:	tr "xc" "yb"		x -> y & c -> b
+groß zu klein:	tr [:upper:] [:lower:]	Großbuchstaben werden zu kleinen; analog andersherum
+
+
+
+printf: formatierte Ausgabe
+	printf "Ausgabespezifikation" Parameterliste
+
+printf "%5s %s\n" bla1 bla2
+	- %5s = String-Parameter, Spaltenbreite 5, rechtsbündig
+	- %-5s= gleich bloß linksbündig
+	- \n = Zeilenende
+
+
+while steuerbefehl
+do ...
+done (Optional: Eingabeumleitung direkt hier)
+
+Steuerbefehl steht für Bedingungen wie bei if-Abfragen
+
+
+read: Eine Zeile aus der Eingabe lesen
+	- read var -> Zeile wird in var gespeichert
+	- false wenn die Eingabe leer ist
+Optionen:
+read -p PROMPT var: gibt den String PROMPT ohne newline aus und liest danach die Zeile in var ein
+read -n num var: liest genau so viele Zahlen in var ein wie num vorgiebt
+
+Arrays: werden von 0 Indexiert
+	- echo ${a[1]} = Eintrag 2 ausgeben
+	- echo ${a[*]} = Alle Elemente des Arrays ausgeben
+	- echo ${#a[*]}= Anzahl aller Elemente in a
+
+Zuweisungsmechanismus: var=(x1 x2 ... xn)
+
+
+Funktionen als "Unterprogramme"
+
+Funktionsname()
+{
+	Befehl 1
+	Befehl 2
+	...
+	Befehl n
+}
+
+
