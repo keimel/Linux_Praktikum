@@ -1,0 +1,69 @@
+1
+
+a)
+ps ux | grep xclock
+
+b)
+ps ux | grep xclock | grep -v grep
+
+
+
+2
+
+a)
+top
+
+b)
+kill 24105
+
+c)
+Indem man den parent-Prozess beendet
+
+
+
+3
+
+ls \#*
+# wird zum Kommentieren in der bash benutzt
+weiß nicht!
+
+
+
+4
+
+a)
+
+
+b)
+
+
+c)
+
+
+d)
+
+
+
+5
+
+a)
+chmod g=r,o=r dokument.txt
+
+b)
+ja kann sie
+nein kann sie nicht
+
+c)
+chmod g+w ablage
+umask 575
+
+
+NICHT VOLLSTÄNDIG!
+6				r	w	x	wx	rx	rw
+ls projekt			
+cd projekt					X	X	X
+cat projekt/doku.txt					X	X
+rm projekt/doku.txt					X
+rm projekt/code.c					X
+echo neu > projekt/neu.txt	
+emacs projekt/code.c		

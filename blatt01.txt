@@ -1,0 +1,90 @@
+1
+
+Verweis auf Vorgänger-Verzeichnis	..
+Datei					liste.txt
+Verzeichnis				Briefe
+Verweis auf aktuelles Verzeichnis	.
+
+
+2
+
+cd /homes/tux/ablage
+cd ../projekt/software
+cd ../dokumentation
+cd bildschirmfotos
+pwd
+
+letzte Ausgabe:
+/homes/tux/projekt/dokumentation/bildschirmfotos
+
+
+3
+
+11111111 = 1+2+4+8+16+32+64+128 = 255 = FFh
+11010100 = 128+64+16+4 = 212 = D4h
+01101001 = 1+8+32+64 = 105 = 69h
+64h = 100 = 01100100
+DEh = 222 = 11011110
+42h 6fh 72h 75h 73h 73h 69h 61h  41h 72h 6Dh 69h 6Eh 69h 61h = Borussia Arminia
+136 = 253?; welche Basis hat das Zahlensystem? 49*2 + 7*5 + 3 = 136; die Basis ist 7
+
+
+4
+
+a)
+cal -y
+
+b)
+cal 3020 -m 10
+
+c)
+ncal 3020 -e
+
+
+5
+
+a)
+ls *.pdf
+
+b)
+ls ?????????
+
+c)
+ls ?????????.*
+
+d)
+ls [0-9QWERTZUIOPLKJHGFDSAYXCVBNM]*
+
+e)
+ls [pqrst]*
+
+f)
+ls *ei*
+
+g)
+ls *e*i*
+
+h)
+ls *e*i* *i*e*
+
+
+6
+
+a)
+mkdir ablage
+
+b)
+mv p* ./ablage
+
+c)
+rm teil[12]*
+
+d)
+mv *[12].pdf ./ablage
+
+
+7
+
+rm ergebnisse.tex?
+mv ergebnisse.tex ../archiv/ergebnisse2017.tex
+cp ../vorlagen/forschung.tex ergebnisse2020.tex

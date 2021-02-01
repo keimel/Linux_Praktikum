@@ -1,0 +1,63 @@
+1
+
+a)
+if test $b -ge 17
+
+b)
+if test "$b" != "demo"
+
+c)
+if test -d $a
+
+d)
+if test $# -eq 3
+
+e)
+if test $a -gt 0 || $b -eq 2
+
+
+
+2
+
+#!/bin/bash
+
+if date +"%T" | grep -q "13:16:" 
+then echo "gimme gimme gimme..."
+else 
+	if test -z "$1"	#wurde kein Argument übergeben? 
+	then echo "What manual page do you want?"; exit 1
+	else man $1
+	fi
+fi
+
+
+
+3
+
+a)
+echo $(((3*7-5)**3))
+
+b)
+y=8
+x=$((y+2))
+echo $x
+
+
+
+4
+
+#!/bin/bash
+
+beginning=$(grep -o "^$1" pfade.txt | wc -l)
+ending=$(grep -o "$1$" pfade.txt | wc -l)
+sum=$((beginning+ending))
+
+echo "$beginning Pfade beginnen in $1"
+echo "$ending Pfade enden in $1"
+echo "Also gibt es $sum Pfade die mit $1 beginnen oder enden."
+
+
+
+5
+
+

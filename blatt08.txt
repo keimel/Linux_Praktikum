@@ -1,0 +1,111 @@
+1
+
+#!/bin/bash
+
+cd dateien08
+for i in drei.dat eins.dat zwei.dat
+do
+	echo Inhalt von Datei $i
+	cat $i
+	echo
+done
+cd ..
+
+
+
+
+2
+
+a,b,c)
+
+#!/bin/bash
+
+if test -z "$*"
+then	echo Bitte mindestens ein Wort angeben\!
+else
+	summe=0
+
+	for i in $*
+	do
+		echo -n "$i : "
+		echo -n $i | wc -m
+		j=$(echo -n $i | wc -m)
+		summe=$((summe+j))
+	done
+	echo $summe Zeichen insgesamt
+fi
+
+
+
+
+3
+
+#!/bin/bash
+
+t0=0
+t1=1
+t2=1
+temp=0
+
+if test $1 -lt 0; then echo "Argument muss positiv sein!"		#Fall $1 < 0
+	else if test $1 -eq 0; then echo "$t0"				#Fall $1 = 0
+	else	if test $1 -eq 1; then echo "$t0, $t1"			#Fall $1 = 1
+		else	if test $1 -eq 2; then echo "$t0, $t1, $t2"	#Fall $1 = 2
+			else	echo -n "$t0, $t1, $t2"			#sonst
+				for i in $(seq 3 $1)
+				do temp=$((t0 + t1 + t2))
+				   t0=$t1
+				   t1=$t2
+				   t2=$temp
+				   echo -n ", $t2"
+				done
+				echo
+			fi
+		fi
+	fi 
+fi
+
+
+
+4
+
+#!/bin/bash
+
+# $1 = Dateiname, $2 = Produktname
+
+var=1
+
+for i in $(grep $2 $1 | cut -d\; -f5)
+do
+	echo "$i	" $(grep $2 $1 | cut -d\; -f4 | tail -n +$var | head -1)
+	var=$((var+1))
+done
+
+
+
+
+5
+
+
+
+
+
+
+6
+
+#!/bin/bash
+
+# berechne b^e; $1 = b, $2 = e
+
+if test $2 -eq 0
+then echo 1
+else
+	b=$1
+
+	for i in $(seq 2 $2)
+	do b=$((b * $1))
+	done
+
+	echo $b
+fi
+

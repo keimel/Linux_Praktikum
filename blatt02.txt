@@ -1,0 +1,71 @@
+1
+
+a)
+ls tag*
+
+b)
+ls -la > listing.txt
+
+c)
+grep tag listing.txt
+
+d)
+ls -la | grep tag
+
+
+
+2
+
+1)
+ls *b*
+
+2)
+ls *[ab].*
+
+3)
+ls *1?_?.*
+
+
+
+3
+
+a)
+grep Bielefeld tag*
+
+b)
+sort tag20121020.txt
+
+c)
+sort tag20121020.txt > sort20121020.txt; sort tag20121021.txt > sort20121021.txt
+
+d)
+diff sort20121020.txt sort20121021.txt
+
+
+
+4
+
+a)
+grep Bielefeld verbrauch.txt | grep Februar
+
+b)
+head -1 verbrauch.txt
+
+c)
+head -1 verbrauch.txt; grep Bielefeld verbrauch.txt | grep Februar
+
+
+
+5
+
+head -3 bielefeld.txt; tail +4 bielefeld.txt | sort -t : -k3 -n
+
+head -3 bielefeld.txt; tail +4 bielefeld.txt | sort -t : -k3 -n -r
+
+
+
+6
+
+(head -3 vase.pbm; tail +4 vase.pbm | sed "s/0/2/g" | sed "s/1/0/g" | sed "s/2/1/g") > inverse.pbm
+
+

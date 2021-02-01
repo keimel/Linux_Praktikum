@@ -1,0 +1,72 @@
+1
+
+#!/bin/bash
+
+#Monat Tag Uhrzeit
+log_entry()
+{
+	name=$(cat /etc/hostname)
+	date "+%b %d %H:%M:%S $name: $1"
+}
+
+log_entry "Datenbank neu initialisiert"
+sleep 3
+log_entry "Anfrage bearbeitet"
+
+
+
+
+2
+
+datum=( $(echo 06-12-2019 | tr "-" " ") )
+
+
+
+
+3
+
+Man muss eine reguläre Datei /tmp/stop anlegen.
+
+
+
+
+4
+
+a)
+
+#!/bin/bash
+
+while read line
+do	arr=($line)
+	echo "${#arr[*]}: ${arr[*]}"
+done < ./dateien09/begriffe.txt
+
+
+b)
+
+#!/bin/bash
+
+while read line
+do	arr=($line)
+	random=$((RANDOM%${#arr[*]}))
+	echo -n "${arr[$random]} "
+done < ./dateien09/begriffe.txt
+
+echo
+
+
+
+
+5
+
+#!/bin/bash
+
+read -p "Eingabe: " num
+summe=0
+
+while test "$num" != "="
+do	summe=$((summe+num))
+	read -p "Eingabe: " num
+done
+
+echo "Summe = $summe"

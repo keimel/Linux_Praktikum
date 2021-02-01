@@ -1,0 +1,64 @@
+1
+
+alias suche = "find ~ -name "
+
+
+
+2
+
+#!/bin/bash
+
+find ~ -name $1
+
+
+
+3
+
+#!/bin/bash
+
+echo $*
+echo "Das sind $# Worte."
+
+
+
+4
+
+a)
+#!/bin/bash
+
+echo "erste Datei" > eins.txt
+echo "zweite Datei" > zwei.txt
+echo "dritte Datei" > drei.txt
+
+b)
+cat eins.txt zwei.txt drei.txt
+
+c)
+zusatz zu a):
+
+tar czf archiv.tar.gz eins.txt zwei.txt drei.txt
+
+rm eins.txt zwei.txt drei.txt
+
+d)
+ersatz zu c):
+
+tar czf $1.tar.gz eins.txt zwei.txt drei.txt
+
+
+
+5
+
+#!/bin/bash
+
+#liste alle Datein auf, die keine Ordner sind
+ls -l | grep "^-?*" | sort -k 5 -n
+
+
+
+6
+
+#!/bin/bash
+
+(head -3 $1 ; tail +4 $1 | sed "s/0/2/g" | sed "s/1/0/g" | sed "s/2/1/g") > $2.pbm
+

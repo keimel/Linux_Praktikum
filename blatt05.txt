@@ -1,0 +1,81 @@
+1
+
+#!/bin/bash
+
+(echo $1 $1 $1 $1 $1 $1 $1 $1
+echo $1 $1 $1 $1 $1 $1 $1 $1
+echo $1 $1 $1 $1 $1 $1 $1 $1) > $1.dat
+
+
+
+2
+
+1)
+git config --global user.name ”Michael”$
+git config --global user.email”michael@e-mail.de”$
+
+
+2)
+cd projekt
+git init
+
+
+3)
+git add *
+git commit -m "Dateien hinzugefügt"
+
+
+4)
+git add 1.dat (nachdem 1.dat verändert wurde)
+git commit -m "1 wurde geändert"
+
+
+5)
+git rm 2.dat
+git checkout HEAD 2.dat
+
+
+6)
+git rm *.dat
+git reset --hard
+
+
+7)
+git rm neue-datei.sh
+git commit -m "neue-datei.sh entfernt"
+
+
+8)
+echo neue-datei.sh >> .gitignore
+
+
+9)
+echo \*.sh >> .gitignore
+
+
+
+3
+
+1)
+
+#!/bin/bash
+
+#find $1.git -type d (ordnerzahl)
+#find $1.git -type f (dateizahl)
+
+echo Das Verzeichnis $1.git enthält $(find $1.git -type d | wc -l) Unterverzeichnis\/se und  $(find $1.git -type f | wc -l) Datei\/en.
+
+
+2)
+?????
+
+
+
+4
+
+1)
+z.B. echo Peter >> 2.dat
+
+
+2)
+
